@@ -1,0 +1,19 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: native, vault
+  application:
+    name: config-microservice
+  cloud.config.server:
+    vault:
+      port: 8200
+      host: 127.0.0.1
+      scheme: http
+      authentication: TOKEN
+      token: hvs.55kMAj0Q290fBkd5eTn5i6zt
+      kv-version: 2
+      order: 1
+    native:
+      search-locations: classpath:/config
+      order: 2
