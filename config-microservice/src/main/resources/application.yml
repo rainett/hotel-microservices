@@ -8,7 +8,7 @@ spring:
       host: 127.0.0.1
       scheme: http
       authentication: TOKEN
-      token: hvs.RpPKtoB3NoEpgSalszSSYLWw
+      token: hvs.flynRx5nPbyZNu0bxhHqMzqi
       kv-version: 2
       order: 1
     native:
