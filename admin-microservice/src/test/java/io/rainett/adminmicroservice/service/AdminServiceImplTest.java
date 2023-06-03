@@ -45,9 +45,9 @@ class AdminServiceImplTest {
     @DisplayName("getAllAdminsByPage returns page of admins")
     void getAllAdminsByPage_ReturnsPageOfAdmins() {
         // Arrange
-        Admin admin1 = new Admin(1L, "admin1", "admin_password1", "admin1@gmail.com");
-        Admin admin2 = new Admin(2L, "admin2", "admin_password2", "admin2@gmail.com");
-        Admin admin3 = new Admin(3L, "admin3", "admin_password3", "admin3@gmail.com");
+        Admin admin1 = new Admin(1L, "admin1", "admin_password1", "admin1@gmail.com", null);
+        Admin admin2 = new Admin(2L, "admin2", "admin_password2", "admin2@gmail.com", null);
+        Admin admin3 = new Admin(3L, "admin3", "admin_password3", "admin3@gmail.com", null);
         Admin admin4 = new Admin();
         Page<Admin> adminPage = new PageImpl<>(List.of(admin1, admin2, admin3, admin4));
         System.out.println(admin1);
@@ -66,7 +66,7 @@ class AdminServiceImplTest {
     void getAdminById_ReturnsAdminById_WhenFound() {
         // Arrange
         long id = 23L;
-        Admin admin = new Admin(id, "admin", "admin_password", "admin@gmail.com");
+        Admin admin = new Admin(id, "admin", "admin_password", "admin@gmail.com", null);
         when(adminRepository.findById(id)).thenReturn(Optional.of(admin));
 
         // Act
@@ -93,9 +93,9 @@ class AdminServiceImplTest {
     void updateAdminById_UpdatesAdminById_AndReturnsUpdatedAdmin() {
         // Arrange
         Long id = 23L;
-        Admin initialAdmin = new Admin(id, "admin", "admin_password", "admin@gmail.com");
-        Admin updatedAdmin = new Admin(id, "updated_admin", "new_password", "ad@gmail.com");
-        AdminDto updatedAdminDto = new AdminDto(id, "updated_admin", "new_password", "ad@gmail.com");
+        Admin initialAdmin = new Admin(id, "admin", "admin_password", "admin@gmail.com", null);
+        Admin updatedAdmin = new Admin(id, "updated_admin", "new_password", "ad@gmail.com", null);
+        AdminDto updatedAdminDto = new AdminDto(id, "updated_admin", "new_password", "ad@gmail.com", null);
         when(adminRepository.findById(id)).thenReturn(Optional.of(initialAdmin));
         when(adminRepository.save(any(Admin.class))).thenReturn(updatedAdmin);
 
@@ -123,7 +123,7 @@ class AdminServiceImplTest {
     void deleteAdminById_DeletesAdmin() {
         // Arrange
         long id = 12L;
-        Admin admin = new Admin(id, "admin", "admin_password", "admin@gmail.com");
+        Admin admin = new Admin(id, "admin", "admin_password", "admin@gmail.com", null);
         when(adminRepository.findById(id)).thenReturn(Optional.of(admin));
 
         // Act

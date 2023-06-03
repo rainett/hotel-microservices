@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/config-microservice/config-microservice.iml" filepath="$PROJECT_DIR$/config-microservice/config-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/discovery-microservice/discovery-microservice.iml" filepath="$PROJECT_DIR$/discovery-microservice/discovery-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hotel-microservices.iml" filepath="$PROJECT_DIR$/.idea/hotel-microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manager-microservice/manager-microservice.iml" filepath="$PROJECT_DIR$/manager-microservice/manager-microservice.iml" />
     </modules>
   </component>
 </project>

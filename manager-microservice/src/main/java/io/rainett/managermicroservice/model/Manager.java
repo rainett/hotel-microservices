@@ -1,4 +1,4 @@
-package io.rainett.adminmicroservice.model;
+package io.rainett.managermicroservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,27 +8,28 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-@Table(name = "admins", uniqueConstraints = {
-        @UniqueConstraint(name = "admin_username_uq", columnNames = "username"),
-        @UniqueConstraint(name = "admin_email_uq", columnNames = "email")
-})
 @AllArgsConstructor
-public class Admin {
+@Table(name = "managers", uniqueConstraints = {
+        @UniqueConstraint(name = "manager_email_uq", columnNames = "email")
+})
+public class Manager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String username;
+    private String firstName;
 
     @Column(nullable = false)
-    private String password;
+    private String lastName;
 
     @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

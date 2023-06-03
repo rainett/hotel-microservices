@@ -51,6 +51,7 @@ public class AdminServiceImpl implements AdminService {
                 .username(admin.getUsername())
                 .password(admin.getPassword())
                 .email(admin.getEmail())
+                .createdAt(admin.getCreatedAt())
                 .build();
     }
 }

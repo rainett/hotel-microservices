@@ -2,6 +2,7 @@ package io.rainett.adminmicroservice.controller;
 
 import io.rainett.adminmicroservice.dto.AdminDto;
 import io.rainett.adminmicroservice.service.AdminService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +29,7 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdminDto> updateAdminById(@PathVariable Long id, @RequestBody AdminDto adminDto) {
+    public ResponseEntity<AdminDto> updateAdminById(@PathVariable Long id, @Valid @RequestBody AdminDto adminDto) {
         AdminDto updatedAdminDto = adminService.updateAdminById(id, adminDto);
         return ResponseEntity.ok(updatedAdminDto);
     }

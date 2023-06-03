@@ -55,10 +55,10 @@ public class AdminControllerTest {
     @DisplayName("getAllAdminsByPage returns AdminDto Page")
     void getAllAdminsByPage_ReturnsAdminDtoPage() throws Exception {
         // Arrange
-        AdminDto adminDto1 = new AdminDto(1L, "admin1", "admin_password1", "admin1@gmail.com");
-        AdminDto adminDto2 = new AdminDto(2L, "admin2", "admin_password2", "admin2@gmail.com");
-        AdminDto adminDto3 = new AdminDto(3L, "admin3", "admin_password3", "admin3@gmail.com");
-        AdminDto adminDto4 = new AdminDto(4L, "admin4", "admin_password4", "admin4@gmail.com");
+        AdminDto adminDto1 = new AdminDto(1L, "admin1", "admin_password1", "admin1@gmail.com", null);
+        AdminDto adminDto2 = new AdminDto(2L, "admin2", "admin_password2", "admin2@gmail.com", null);
+        AdminDto adminDto3 = new AdminDto(3L, "admin3", "admin_password3", "admin3@gmail.com", null);
+        AdminDto adminDto4 = new AdminDto(4L, "admin4", "admin_password4", "admin4@gmail.com", null);
         Page<AdminDto> adminDtoPage = new PageImpl<>(List.of(adminDto1, adminDto2, adminDto3, adminDto4));
         when(adminService.getAllAdminsByPage(any(Pageable.class))).thenReturn(adminDtoPage);
 
@@ -77,7 +77,7 @@ public class AdminControllerTest {
     void getAdminById_ReturnsAdminDto_WhenFound() throws Exception {
         // Arrange
         long id = 1L;
-        AdminDto adminDto = new AdminDto(id, "admin1", "admin_password1", "admin1@gmail.com");
+        AdminDto adminDto = new AdminDto(id, "admin1", "admin_password1", "admin1@gmail.com", null);
         when(adminService.getAdminById(id)).thenReturn(adminDto);
 
         // Act and Assert
@@ -110,7 +110,7 @@ public class AdminControllerTest {
     void updateAdminById_ReturnsUpdatedAdminDto() throws Exception {
         // Arrange
         long id = 1L;
-        AdminDto adminDto = new AdminDto(id, "admin1", "admin_password", "admin1@gmail.com");
+        AdminDto adminDto = new AdminDto(id, "admin1", "admin_password", "admin1@gmail.com", null);
         when(adminService.updateAdminById(id, adminDto)).thenReturn(adminDto);
 
         // Act and Assert
@@ -132,12 +132,14 @@ public class AdminControllerTest {
     void updateAdminById_ThrowsAnException_WhenNotFound() throws Exception {
         // Arrange
         long id = 12L;
+        AdminDto adminDto = new AdminDto(id, "admin1", "admin_password", "admin1@gmail.com", null);
         when(adminService.updateAdminById(eq(id), any(AdminDto.class))).thenThrow(new AdminNotFoundException(id));
 
         // Act and Assert
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/admins/" + id)
-                        .content(new ObjectMapper().writeValueAsString(new AdminDto()))
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .content(new ObjectMapper().writeValueAsString(adminDto))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andExpect(result -> assertTrue(result.getResolvedException() instanceof AdminNotFoundException));
         verify(adminService, times(1)).updateAdminById(eq(id), any(AdminDto.class));
