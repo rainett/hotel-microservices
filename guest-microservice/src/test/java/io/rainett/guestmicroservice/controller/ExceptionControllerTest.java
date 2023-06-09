@@ -1,9 +1,9 @@
-package io.rainett.managermicroservice.controller;
+package io.rainett.guestmicroservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.rainett.managermicroservice.dto.ManagerDto;
-import io.rainett.managermicroservice.exception.ManagerNotFoundException;
-import io.rainett.managermicroservice.service.ManagerServiceImpl;
+import io.rainett.guestmicroservice.dto.GuestDto;
+import io.rainett.guestmicroservice.exception.GuestNotFoundException;
+import io.rainett.guestmicroservice.service.GuestServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,10 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ExceptionControllerTest {
 
     @Mock
-    private ManagerServiceImpl managerService;
+    private GuestServiceImpl guestService;
 
     @InjectMocks
-    private ManagerController managerController;
+    private GuestController guestController;
 
     @InjectMocks
     private ExceptionController exceptionController;
@@ -38,7 +38,7 @@ public class ExceptionControllerTest {
     @BeforeEach
     public void init() {
         closeable = MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(managerController)
+        mockMvc = MockMvcBuilders.standaloneSetup(guestController)
                 .setControllerAdvice(exceptionController)
                 .build();
     }
@@ -51,14 +51,14 @@ public class ExceptionControllerTest {
 
     @Test
     @DisplayName("Handles MNFE and returns message")
-    public void handleManagerNotFoundException() throws Exception {
+    public void handleGuestNotFoundException() throws Exception {
         // Arrange
         long id = 3L;
-        when(managerService.getManagerById(id)).thenThrow(new ManagerNotFoundException(id));
+        when(guestService.getGuestById(id)).thenThrow(new GuestNotFoundException(id));
 
         // Act and Assert
-        String expectedMessage = "Manager with id = [" + id + "] was not found";
-        mockMvc.perform(get("/api/v1/managers/" + id)
+        String expectedMessage = "Guest with id = [" + id + "] was not found";
+        mockMvc.perform(get("/api/v1/guests/" + id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(expectedMessage));
@@ -70,10 +70,10 @@ public class ExceptionControllerTest {
         // Arrange
         long id = 3L;
         String expectedMessage = "Such an error! 0_0";
-        when(managerService.getManagerById(id)).thenThrow(new RuntimeException(expectedMessage));
+        when(guestService.getGuestById(id)).thenThrow(new RuntimeException(expectedMessage));
 
         // Act and Assert
-        mockMvc.perform(get("/api/v1/managers/" + id)
+        mockMvc.perform(get("/api/v1/guests/" + id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
                 .andExpect(content().string(expectedMessage));
@@ -83,7 +83,7 @@ public class ExceptionControllerTest {
     @DisplayName("Handles validation error")
     public void handleValidationError() throws Exception {
         // Arrange
-        ManagerDto managerDto = ManagerDto.builder()
+        GuestDto guestDto = GuestDto.builder()
                 .firstName("")
                 .lastName("Last")
                 .email("not_an_email")
@@ -92,8 +92,8 @@ public class ExceptionControllerTest {
                 .build();
 
         // Act
-        mockMvc.perform(post("/api/v1/managers")
-                        .content(new ObjectMapper().writeValueAsBytes(managerDto))
+        mockMvc.perform(post("/api/v1/guests")
+                        .content(new ObjectMapper().writeValueAsBytes(guestDto))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())

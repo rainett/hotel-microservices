@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "managers", uniqueConstraints = {
-        @UniqueConstraint(name = "manager_email_uq", columnNames = "email")
+        @UniqueConstraint(name = "manager_email_uq", columnNames = "email"),
+        @UniqueConstraint(name = "manager_phone_uq", columnNames = "phone")
 })
 public class Manager {
 
@@ -27,6 +28,9 @@ public class Manager {
 
     @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String phone;
 
     @Column(nullable = false)
     private String password;

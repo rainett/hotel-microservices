@@ -51,6 +51,7 @@ public class ManagerServiceImpl implements ManagerService {
         manager.setFirstName(managerDto.getFirstName());
         manager.setLastName(managerDto.getLastName());
         manager.setEmail(managerDto.getEmail());
+        manager.setPhone(managerDto.getPhone());
         manager.setPassword(managerDto.getPassword());
         manager = managerRepository.save(manager);
         return mapToDto(manager);
@@ -62,6 +63,7 @@ public class ManagerServiceImpl implements ManagerService {
                 .firstName(manager.getFirstName())
                 .lastName(manager.getLastName())
                 .email(manager.getEmail())
+                .phone(manager.getPhone())
                 .password(manager.getPassword())
                 .createdAt(manager.getCreatedAt())
                 .build();

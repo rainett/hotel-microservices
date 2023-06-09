@@ -1,7 +1,7 @@
-package io.rainett.managermicroservice.controller;
+package io.rainett.roommicroservice.controller;
 
-import io.rainett.managermicroservice.dto.ValidationErrorDto;
-import io.rainett.managermicroservice.exception.ManagerNotFoundException;
+import io.rainett.roommicroservice.dto.ValidationErrorDto;
+import io.rainett.roommicroservice.exception.RoomNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -30,8 +30,8 @@ public class ExceptionController {
                 .body(ex.getMessage());
     }
 
-    @ExceptionHandler(ManagerNotFoundException.class)
-    public ResponseEntity<String> handleManagerNotFoundException(ManagerNotFoundException ex) {
+    @ExceptionHandler(RoomNotFoundException.class)
+    public ResponseEntity<String> handleRoomNotFoundException(RoomNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(ex.getMessage());

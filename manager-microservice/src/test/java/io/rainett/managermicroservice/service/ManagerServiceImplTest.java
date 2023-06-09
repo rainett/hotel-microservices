@@ -46,9 +46,9 @@ class ManagerServiceImplTest {
     @DisplayName("getAllManagersByPage returns page of managers")
     void getAllManagersByPage_ReturnsPageOfManagers() {
         // Arrange
-        Manager manager1 = new Manager(1L, "John", "Doe", "john.doe@example.com", "password", LocalDateTime.now());
-        Manager manager2 = new Manager(2L, "Jane", "Smith", "jane.smith@example.com", "password", LocalDateTime.now());
-        Manager manager3 = new Manager(3L, "David", "Johnson", "david.johnson@example.com", "password", LocalDateTime.now());
+        Manager manager1 = new Manager(1L, "John", "Doe", "john.doe@example.com", "+1-(123)-45-67-890", "password", LocalDateTime.now());
+        Manager manager2 = new Manager(2L, "Jane", "Smith", "jane.smith@example.com", "+1-(123)-45-67-890", "password", LocalDateTime.now());
+        Manager manager3 = new Manager(3L, "David", "Johnson", "david.johnson@example.com", "+1-(123)-45-67-890", "password", LocalDateTime.now());
         Manager manager4 = new Manager();
         Page<Manager> managerPage = new PageImpl<>(List.of(manager1, manager2, manager3, manager4));
         when(managerRepository.findAll(any(Pageable.class))).thenReturn(managerPage);
@@ -66,7 +66,7 @@ class ManagerServiceImplTest {
     void getManagerById_ReturnsManagerDto_WhenFound() {
         // Arrange
         long id = 1L;
-        Manager manager = new Manager(id, "John", "Doe", "john.doe@example.com", "password", LocalDateTime.now());
+        Manager manager = new Manager(id, "John", "Doe", "john.doe@example.com", "+1-(123)-45-67-890", "password", LocalDateTime.now());
         when(managerRepository.findById(id)).thenReturn(Optional.of(manager));
 
         // Act
@@ -99,7 +99,7 @@ class ManagerServiceImplTest {
                 .password("password")
                 .build();
 
-        Manager createdManager = new Manager(1L, "John", "Doe", "john.doe@example.com", "password", null);
+        Manager createdManager = new Manager(1L, "John", "Doe", "john.doe@example.com", "+1-(123)-45-67-890", "password", null);
         when(managerRepository.save(any(Manager.class))).thenReturn(createdManager);
 
         // Act
@@ -121,8 +121,8 @@ class ManagerServiceImplTest {
                 .password("password")
                 .build();
         long id = 1L;
-        Manager manager = new Manager(id, "John", "Doe", "john.doe@example.com", "password", null);
-        Manager updatedManager = new Manager(id, "John", "Doe", "johndoe@example.com", "password", null);
+        Manager manager = new Manager(id, "John", "Doe", "john.doe@example.com", "johndoe", "password", null);
+        Manager updatedManager = new Manager(id, "John", "Doe", "johndoe@example.com", "johndoe", "password", null);
         when(managerRepository.findById(id)).thenReturn(Optional.of(manager));
         when(managerRepository.save(any(Manager.class))).thenReturn(updatedManager);
 
@@ -156,7 +156,7 @@ class ManagerServiceImplTest {
     void deleteManagerById_DeletesManager() {
         // Arrange
         long id = 12L;
-        Manager manager = new Manager(id, "John", "Doe", "john.doe@example.com", "password", null);
+        Manager manager = new Manager(id, "John", "Doe", "john.doe@example.com", "johndoe", "password", null);
         when(managerRepository.findById(id)).thenReturn(Optional.of(manager));
 
         // Act
@@ -184,6 +184,7 @@ class ManagerServiceImplTest {
                 .firstName(manager.getFirstName())
                 .lastName(manager.getLastName())
                 .email(manager.getEmail())
+                .phone(manager.getPhone())
                 .password(manager.getPassword())
                 .createdAt(manager.getCreatedAt())
                 .build();

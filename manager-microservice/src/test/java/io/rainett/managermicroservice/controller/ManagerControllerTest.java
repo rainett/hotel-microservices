@@ -56,10 +56,10 @@ public class ManagerControllerTest {
     @DisplayName("getAllManagersByPage returns ManagerDto Page")
     void getAllManagersByPage_ReturnsManagerDtoPage() throws Exception {
         // Arrange
-        ManagerDto managerDto1 = new ManagerDto(1L, "John", "Doe", "john.doe@example.com", "password", LocalDateTime.now());
-        ManagerDto managerDto2 = new ManagerDto(2L, "Jane", "Smith", "jane.smith@example.com", "password", LocalDateTime.now());
-        ManagerDto managerDto3 = new ManagerDto(3L, "Mike", "Johnson", "mike.johnson@example.com", "password", LocalDateTime.now());
-        ManagerDto managerDto4 = new ManagerDto(4L, "Emily", "Brown", "emily.brown@example.com", "password", LocalDateTime.now());
+        ManagerDto managerDto1 = new ManagerDto(1L, "John", "Doe", "john.doe@example.com", "johndoe", "password", LocalDateTime.now());
+        ManagerDto managerDto2 = new ManagerDto(2L, "Jane", "Smith", "jane.smith@example.com", "janesmith","password", LocalDateTime.now());
+        ManagerDto managerDto3 = new ManagerDto(3L, "Mike", "Johnson", "mike.johnson@example.com", "mikejohnson", "password", LocalDateTime.now());
+        ManagerDto managerDto4 = new ManagerDto(4L, "Emily", "Brown", "emily.brown@example.com", "emilybrown", "password", LocalDateTime.now());
         Page<ManagerDto> managerDtoPage = new PageImpl<>(List.of(managerDto1, managerDto2, managerDto3, managerDto4));
         when(managerService.getAllManagersByPage(any(Pageable.class))).thenReturn(managerDtoPage);
 
@@ -78,7 +78,7 @@ public class ManagerControllerTest {
     void getManagerById_ReturnsManagerDto_WhenFound() throws Exception {
         // Arrange
         long id = 1L;
-        ManagerDto managerDto = new ManagerDto(id, "John", "Doe", "john.doe@example.com", "password", LocalDateTime.now());
+        ManagerDto managerDto = new ManagerDto(id, "John", "Doe", "john.doe@example.com", "johndoe", "password", LocalDateTime.now());
         when(managerService.getManagerById(id)).thenReturn(managerDto);
 
         // Act and Assert
@@ -111,8 +111,8 @@ public class ManagerControllerTest {
     @DisplayName("createManager returns created ManagerDto")
     void createManager_ReturnsCreatedManagerDto() throws Exception {
         // Arrange
-        ManagerDto managerDto = new ManagerDto(null, "John", "Doe", "john.doe@example.com", "password", null);
-        ManagerDto createdManagerDto = new ManagerDto(1L, "John", "Doe", "john.doe@example.com", "password", LocalDateTime.now());
+        ManagerDto managerDto = new ManagerDto(null, "John", "Doe", "john.doe@example.com", "+1-(123)-456-78-90", "password", null);
+        ManagerDto createdManagerDto = new ManagerDto(1L, "John", "Doe", "john.doe@example.com", "+1-(123)-456-78-90", "password", LocalDateTime.now());
         when(managerService.createManager(managerDto)).thenReturn(createdManagerDto);
 
         // Act and Assert
@@ -134,8 +134,8 @@ public class ManagerControllerTest {
     void updateManagerById_ReturnsUpdatedManagerDto() throws Exception {
         // Arrange
         long id = 1L;
-        ManagerDto managerDto = new ManagerDto(id, "John", "Doe", "john.doe@example.com", "password", null);
-        ManagerDto updatedManagerDto = new ManagerDto(id, "John", "Doe", "john.doe@example.com", "new_password", LocalDateTime.now());
+        ManagerDto managerDto = new ManagerDto(id, "John", "Doe", "john.doe@example.com", "+1-(123)-456-78-90", "password", null);
+        ManagerDto updatedManagerDto = new ManagerDto(id, "John", "Doe", "john.doe@example.com", "+1-(123)-456-78-90", "new_password", LocalDateTime.now());
         when(managerService.updateManagerById(id, managerDto)).thenReturn(updatedManagerDto);
 
         // Act and Assert

@@ -7,11 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="admin-microservice" />
-        <module name="discovery-microservice" />
         <module name="config-microservice" />
         <module name="demo-microservice" />
         <module name="manager-microservice" />
+        <module name="guest-microservice" />
+        <module name="room-microservice" />
+        <module name="admin-microservice" />
+        <module name="manager-microservice (1)" />
+        <module name="discovery-microservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,7 +22,10 @@
       <module name="config-microservice" target="17" />
       <module name="demo-microservice" target="17" />
       <module name="discovery-microservice" target="17" />
+      <module name="guest-microservice" target="17" />
       <module name="manager-microservice" target="17" />
+      <module name="manager-microservice (1)" target="17" />
+      <module name="room-microservice" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -28,7 +34,10 @@
       <module name="config-microservice" options="-parameters" />
       <module name="demo-microservice" options="-parameters" />
       <module name="discovery-microservice" options="-parameters" />
+      <module name="guest-microservice" options="-parameters" />
       <module name="manager-microservice" options="-parameters" />
+      <module name="manager-microservice (1)" options="-parameters" />
+      <module name="room-microservice" options="-parameters" />
     </option>
   </component>
 </project>
