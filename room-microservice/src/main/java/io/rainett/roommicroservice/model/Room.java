@@ -46,9 +46,8 @@ public class Room {
 
     private BigDecimal price;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private BigDecimal reservationPrice = new BigDecimal(0);
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private List<RoomReservation> reservations;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }

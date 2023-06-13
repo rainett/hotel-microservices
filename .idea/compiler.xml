@@ -13,6 +13,7 @@
         <module name="guest-microservice" />
         <module name="room-microservice" />
         <module name="admin-microservice" />
+        <module name="reservation-microservice" />
         <module name="manager-microservice (1)" />
         <module name="discovery-microservice" />
       </profile>
@@ -25,6 +26,7 @@
       <module name="guest-microservice" target="17" />
       <module name="manager-microservice" target="17" />
       <module name="manager-microservice (1)" target="17" />
+      <module name="reservation-microservice" target="17" />
       <module name="room-microservice" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -37,6 +39,7 @@
       <module name="guest-microservice" options="-parameters" />
       <module name="manager-microservice" options="-parameters" />
       <module name="manager-microservice (1)" options="-parameters" />
+      <module name="reservation-microservice" options="-parameters" />
       <module name="room-microservice" options="-parameters" />
     </option>
   </component>

@@ -6,6 +6,7 @@ database:
   name: hotel_db
   host: localhost
   port: 5432
+
 spring:
   datasource:
     username: username
@@ -15,3 +16,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+
+kafka.bootstrapAddress: localhost:9092

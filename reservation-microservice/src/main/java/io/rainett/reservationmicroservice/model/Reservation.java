@@ -1,4 +1,4 @@
-package io.rainett.roommicroservice.model;
+package io.rainett.reservationmicroservice.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,14 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "room_reservations")
-public class RoomReservation {
+@Table(name = "reservations")
+public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +24,19 @@ public class RoomReservation {
     @Column(nullable = false)
     private Long guestId;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id", foreignKey = @ForeignKey(name = "room_reservations_room_fk"), nullable = false)
-    private Room room;
+    @Column(nullable = false)
+    private Long roomId;
 
+    @Column(nullable = false)
     private LocalDate checkInDate;
 
+    @Column(nullable = false)
     private LocalDate checkOutDate;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }
