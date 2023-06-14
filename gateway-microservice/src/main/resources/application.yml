@@ -1,0 +1,29 @@
+server.port: 8080
+eureka:
+  client.serviceUrl.defaultZone: http://localhost:8761/eureka
+  instance.prefer-ip-address: true
+spring:
+  application.name: gateway-microservice
+  cloud:
+    gateway:
+      routes:
+        - id: admin-microservice
+          uri: lb://admin-microservice
+          predicates:
+            - Path=/api/v1/admins/**
+        - id: manager-microservice
+          uri: lb://manager-microservice
+          predicates:
+            - Path=/api/v1/managers/**
+        - id: guest-microservice
+          uri: lb://guest-microservice
+          predicates:
+            - Path=/api/v1/guests/**
+        - id: reservation-microservice
+          uri: lb://reservation-microservice
+          predicates:
+            - Path=/api/v1/reservations/**
+        - id: room-microservice
+          uri: lb://room-microservice
+          predicates:
+            - Path=/api/v1/rooms/**

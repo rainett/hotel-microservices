@@ -14,6 +14,7 @@
         <module name="room-microservice" />
         <module name="admin-microservice" />
         <module name="reservation-microservice" />
+        <module name="gateway-microservice" />
         <module name="manager-microservice (1)" />
         <module name="discovery-microservice" />
       </profile>
@@ -23,6 +24,7 @@
       <module name="config-microservice" target="17" />
       <module name="demo-microservice" target="17" />
       <module name="discovery-microservice" target="17" />
+      <module name="gateway-microservice" target="17" />
       <module name="guest-microservice" target="17" />
       <module name="manager-microservice" target="17" />
       <module name="manager-microservice (1)" target="17" />
@@ -36,6 +38,7 @@
       <module name="config-microservice" options="-parameters" />
       <module name="demo-microservice" options="-parameters" />
       <module name="discovery-microservice" options="-parameters" />
+      <module name="gateway-microservice" options="-parameters" />
       <module name="guest-microservice" options="-parameters" />
       <module name="manager-microservice" options="-parameters" />
       <module name="manager-microservice (1)" options="-parameters" />

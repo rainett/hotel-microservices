@@ -47,7 +47,7 @@ public class ReservationController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping
+    @PostMapping("/perform")
     public ResponseEntity<ReservationDto> guestReservation(@RequestBody ReservationDto reservationDto) {
         ReservationDto guestReservationDto = reservationService.guestReservation(reservationDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(guestReservationDto);
