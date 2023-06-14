@@ -1,15 +1,14 @@
 package io.rainett.reservationmicroservice.exception;
 
+import io.rainett.reservationmicroservice.dto.ReservationDto;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.time.LocalDate;
 
 @ResponseStatus()
 public class RoomNotAvailableException extends RuntimeException {
-    public RoomNotAvailableException(Long roomId, LocalDate checkInDate, LocalDate checkOutDate) {
-        super("Room with id = [" + roomId +
-                "] is not available between checkInDate = [" + checkInDate +
-                "] and checkOutDate = [" + checkOutDate +
+    public RoomNotAvailableException(ReservationDto reservationDto) {
+        super("Room with id = [" + reservationDto.getRoomId() +
+                "] is not available between checkInDate = [" + reservationDto.getCheckInDate() +
+                "] and checkOutDate = [" + reservationDto.getCheckOutDate() +
                 "] dates");
     }
 }

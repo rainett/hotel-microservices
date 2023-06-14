@@ -5,6 +5,7 @@ import io.rainett.reservationmicroservice.exception.GuestReservationNotAllowedEx
 import io.rainett.reservationmicroservice.exception.ReservationNotFoundException;
 import io.rainett.reservationmicroservice.exception.RoomNotAvailableException;
 import io.rainett.reservationmicroservice.exception.RoomNotFoundException;
+import io.rainett.reservationmicroservice.model.PaymentStatus;
 import io.rainett.reservationmicroservice.model.Reservation;
 import io.rainett.reservationmicroservice.repository.ReservationRepository;
 import io.rainett.reservationmicroservice.service.guest.GuestService;
@@ -17,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.kafka.requestreply.RequestReplyFuture;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -44,7 +44,6 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public ReservationDto createReservation(ReservationDto reservationDto) {
-        checkAvailabilityAndThrowExceptions(reservationDto);
         Reservation reservation = new Reservation();
         return persistReservationAndReturnDto(reservation, reservationDto);
     }
@@ -63,6 +62,20 @@ public class ReservationServiceImpl implements ReservationService {
         reservationRepository.delete(reservation);
     }
 
+    @Override
+    public ReservationDto guestReservation(ReservationDto reservationDto) {
+        checkAvailabilityAndThrowExceptions(reservationDto);
+        Reservation reservation = new Reservation();
+        return persistReservationAndReturnDto(reservation, reservationDto);
+    }
+
+    @Override
+    public void cancelReservation(Long id) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new ReservationNotFoundException(id));
+        reservationRepository.delete(reservation);
+    }
+
     private ReservationDto persistReservationAndReturnDto(Reservation reservation, ReservationDto reservationDto) {
         reservation.setGuestId(reservationDto.getGuestId());
         reservation.setRoomId(reservationDto.getRoomId());
@@ -74,6 +87,14 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     private void checkAvailabilityAndThrowExceptions(ReservationDto reservationDto) {
+        asyncCheckGuestAndRoom(reservationDto);
+        boolean roomIsAvailable = getRoomAvailability(reservationDto);
+        if (!roomIsAvailable) {
+            throw new RoomNotAvailableException(reservationDto);
+        }
+    }
+
+    private void asyncCheckGuestAndRoom(ReservationDto reservationDto) {
         Long guestId = reservationDto.getGuestId();
         RequestReplyFuture<String, String, String> guestReply
                 = guestService.guestCanPerformReservation(guestId);
@@ -82,24 +103,21 @@ public class ReservationServiceImpl implements ReservationService {
                 = roomService.roomIsAvailable(roomId);
 
         boolean guestCanPerformReservation = Boolean.parseBoolean(getResponse(guestReply));
-        boolean roomExists = Boolean.parseBoolean(getResponse(roomReply));
+        double reservationPrice = Double.parseDouble(getResponse(roomReply));
         if (!guestCanPerformReservation) {
             throw new GuestReservationNotAllowedException(guestId);
         }
-        if (!roomExists) {
+        if (reservationPrice < 0) {
             throw new RoomNotFoundException(roomId);
-        }
-
-        LocalDate checkInDate = reservationDto.getCheckInDate();
-        LocalDate checkOutDate = reservationDto.getCheckOutDate();
-        boolean roomIsAvailable = getRoomAvailability(roomId, checkInDate, checkOutDate);
-        if (!roomIsAvailable) {
-            throw new RoomNotAvailableException(roomId, checkInDate, checkOutDate);
+        } else if (reservationPrice == 0) {
+            reservationDto.setPaymentStatus(PaymentStatus.COMPLETED);
         }
     }
 
-    private boolean getRoomAvailability(Long roomId, LocalDate checkInDate, LocalDate checkOutDate) {
-        return !reservationRepository.existsWhereDateBetween(roomId, checkInDate, checkOutDate);
+    private boolean getRoomAvailability(ReservationDto reservationDto) {
+        return !reservationRepository.existsWhereDateBetween(reservationDto.getId(),
+                reservationDto.getCheckInDate(),
+                reservationDto.getCheckOutDate());
     }
 
     private static String getResponse(RequestReplyFuture<String, String, String> sendResultCompletableFuture) {

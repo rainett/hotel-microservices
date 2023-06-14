@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -25,10 +24,10 @@ public class ReservationDto {
     private Long roomId;
 
     @NotNull
-    private LocalDate checkInDate;
+    private LocalDateTime checkInDate;
 
     @NotNull
-    private LocalDate checkOutDate;
+    private LocalDateTime checkOutDate;
 
     private PaymentStatus paymentStatus = PaymentStatus.NEEDED;
 

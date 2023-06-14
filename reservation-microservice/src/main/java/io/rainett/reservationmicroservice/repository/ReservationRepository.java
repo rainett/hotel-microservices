@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -15,5 +15,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             and r.checkInDate between ?2 and ?3
             and r.checkOutDate between ?2 and ?3
             """)
-    boolean existsWhereDateBetween(Long id, LocalDate checkInDate, LocalDate checkOutDate);
+    boolean existsWhereDateBetween(Long id, LocalDateTime checkInDate, LocalDateTime checkOutDate);
 }

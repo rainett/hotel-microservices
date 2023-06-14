@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,10 +27,10 @@ public class Reservation {
     private Long roomId;
 
     @Column(nullable = false)
-    private LocalDate checkInDate;
+    private LocalDateTime checkInDate;
 
     @Column(nullable = false)
-    private LocalDate checkOutDate;
+    private LocalDateTime checkOutDate;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

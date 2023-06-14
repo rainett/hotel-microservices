@@ -48,6 +48,10 @@ public class Room {
 
     private BigDecimal reservationPrice = new BigDecimal(0);
 
+    private BigDecimal reservationCancellationPrice = new BigDecimal(0);
+
+    private Short daysBeforeCancellationIsPaid = 0;
+
     private LocalDateTime createdAt = LocalDateTime.now();
 
 }

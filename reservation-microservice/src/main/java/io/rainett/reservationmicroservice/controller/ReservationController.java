@@ -47,5 +47,17 @@ public class ReservationController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping
+    public ResponseEntity<ReservationDto> guestReservation(@RequestBody ReservationDto reservationDto) {
+        ReservationDto guestReservationDto = reservationService.guestReservation(reservationDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(guestReservationDto);
+    }
+
+    @DeleteMapping("/{id}/cancel")
+    public ResponseEntity<Void> cancelReservation(@PathVariable Long id) {
+        reservationService.cancelReservation(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
