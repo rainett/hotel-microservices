@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/admin-microservice/admin-microservice.iml" filepath="$PROJECT_DIR$/admin-microservice/admin-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/config-microservice/config-microservice.iml" filepath="$PROJECT_DIR$/config-microservice/config-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/discovery-microservice/discovery-microservice.iml" filepath="$PROJECT_DIR$/discovery-microservice/discovery-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway-microservice/gateway-microservice.iml" filepath="$PROJECT_DIR$/gateway-microservice/gateway-microservice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/guest-microservice/guest-microservice.iml" filepath="$PROJECT_DIR$/guest-microservice/guest-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hotel-microservices.iml" filepath="$PROJECT_DIR$/.idea/hotel-microservices.iml" />
-      <module fileurl="file://$PROJECT_DIR$/manager-microservice/manager-microservice.iml" filepath="$PROJECT_DIR$/manager-microservice/manager-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/guest-microservice/manager-microservice (1).iml" filepath="$PROJECT_DIR$/guest-microservice/manager-microservice (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/reservation-microservice/reservation-microservice.iml" filepath="$PROJECT_DIR$/reservation-microservice/reservation-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/room-microservice/room-microservice.iml" filepath="$PROJECT_DIR$/room-microservice/room-microservice.iml" />

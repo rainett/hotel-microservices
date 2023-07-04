@@ -1,7 +1,7 @@
 package io.rainett.reservationmicroservice.controller;
 
 import io.rainett.reservationmicroservice.dto.ReservationDto;
-import io.rainett.reservationmicroservice.service.reservation.ReservationService;
+import io.rainett.reservationmicroservice.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,18 +44,6 @@ public class ReservationController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
         reservationService.deleteReservation(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/perform")
-    public ResponseEntity<ReservationDto> guestReservation(@RequestBody ReservationDto reservationDto) {
-        ReservationDto guestReservationDto = reservationService.guestReservation(reservationDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(guestReservationDto);
-    }
-
-    @DeleteMapping("/{id}/cancel")
-    public ResponseEntity<Void> cancelReservation(@PathVariable Long id) {
-        reservationService.cancelReservation(id);
         return ResponseEntity.noContent().build();
     }
 

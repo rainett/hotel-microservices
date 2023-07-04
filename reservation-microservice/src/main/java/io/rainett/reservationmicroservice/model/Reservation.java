@@ -32,10 +32,6 @@ public class Reservation {
     @Column(nullable = false)
     private LocalDateTime checkOutDate;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private PaymentStatus paymentStatus;
-
     private LocalDateTime createdAt = LocalDateTime.now();
 
 }

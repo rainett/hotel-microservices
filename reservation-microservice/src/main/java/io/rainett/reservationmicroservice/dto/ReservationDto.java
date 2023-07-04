@@ -1,6 +1,5 @@
 package io.rainett.reservationmicroservice.dto;
 
-import io.rainett.reservationmicroservice.model.PaymentStatus;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +27,6 @@ public class ReservationDto {
 
     @NotNull
     private LocalDateTime checkOutDate;
-
-    private PaymentStatus paymentStatus = PaymentStatus.NEEDED;
 
     private LocalDateTime createdAt;
 

@@ -9,10 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-microservice" />
         <module name="demo-microservice" />
-        <module name="manager-microservice" />
-        <module name="guest-microservice" />
         <module name="room-microservice" />
-        <module name="admin-microservice" />
         <module name="reservation-microservice" />
         <module name="gateway-microservice" />
         <module name="manager-microservice (1)" />

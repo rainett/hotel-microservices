@@ -1,4 +1,4 @@
-server.port: 8085
+server.port: 8081
 eureka:
   client.serviceUrl.defaultZone: http://localhost:8761/eureka
   instance.prefer-ip-address: true

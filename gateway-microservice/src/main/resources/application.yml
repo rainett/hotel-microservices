@@ -7,18 +7,6 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: admin-microservice
-          uri: lb://admin-microservice
-          predicates:
-            - Path=/api/v1/admins/**
-        - id: manager-microservice
-          uri: lb://manager-microservice
-          predicates:
-            - Path=/api/v1/managers/**
-        - id: guest-microservice
-          uri: lb://guest-microservice
-          predicates:
-            - Path=/api/v1/guests/**
         - id: reservation-microservice
           uri: lb://reservation-microservice
           predicates:
