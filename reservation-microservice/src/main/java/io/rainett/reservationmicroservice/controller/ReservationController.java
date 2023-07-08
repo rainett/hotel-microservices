@@ -2,6 +2,7 @@ package io.rainett.reservationmicroservice.controller;
 
 import io.rainett.reservationmicroservice.dto.ReservationDto;
 import io.rainett.reservationmicroservice.service.ReservationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,14 +30,14 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<ReservationDto> createReservation(@RequestBody ReservationDto reservationDto) {
+    public ResponseEntity<ReservationDto> createReservation(@Valid @RequestBody ReservationDto reservationDto) {
         ReservationDto createdReservationDto = reservationService.createReservation(reservationDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdReservationDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ReservationDto> updateReservation(@PathVariable Long id,
-                                                            @RequestBody ReservationDto reservationDto) {
+                                                            @Valid @RequestBody ReservationDto reservationDto) {
         ReservationDto updatedReservationDto = reservationService.updateReservation(id, reservationDto);
         return ResponseEntity.ok(updatedReservationDto);
     }

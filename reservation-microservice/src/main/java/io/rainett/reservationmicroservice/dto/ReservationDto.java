@@ -16,16 +16,16 @@ public class ReservationDto {
 
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Guest ID is required")
     private Long guestId;
 
-    @NotNull
+    @NotNull(message = "Room ID is required")
     private Long roomId;
 
-    @NotNull
+    @NotNull(message = "Check in date is required")
     private LocalDateTime checkInDate;
 
-    @NotNull
+    @NotNull(message = "Check in date is required")
     private LocalDateTime checkOutDate;
 
     private LocalDateTime createdAt;

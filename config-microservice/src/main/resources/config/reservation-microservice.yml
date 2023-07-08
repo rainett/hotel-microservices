@@ -1,20 +1,27 @@
 server.port: 8081
 eureka:
-  client.serviceUrl.defaultZone: http://localhost:8761/eureka
+  client.serviceUrl.defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka
   instance.prefer-ip-address: true
 database:
-  name: hotel_db
-  host: localhost
-  port: 5432
+  name: ${DB_NAME:hotel_db}
+  host: ${DB_HOST:localhost}
+  port: ${DB_PORT:5432}
+  username: ${DB_USERNAME:postgres}
+  password: ${DB_PASSWORD:password}
+
+kafka:
+  host: ${KAFKA_HOST:localhost}
+  port: ${KAFKA_PORT:9092}
+  bootstrapAddress: ${kafka.host}:${kafka.port}
 
 spring:
+  kafka:
+    bootstrap-servers: ${kafka.bootstrapAddress}
   datasource:
-    username: username
-    password: password
+    username: ${database.username}
+    password: ${database.password}
     url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
-
-kafka.bootstrapAddress: localhost:9092

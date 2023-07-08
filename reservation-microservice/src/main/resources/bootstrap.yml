@@ -1,4 +1,4 @@
 spring:
   application.name: reservation-microservice
   profiles.active: dev
-  cloud.config.uri: http://localhost:8888
+  cloud.config.uri: http://${CONFIG_HOST:localhost}:8888
