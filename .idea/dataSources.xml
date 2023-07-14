@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/hotel_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgres@localhost" uuid="9437b94b-0070-41ac-8057-fde1195bc45d">
+    <data-source source="LOCAL" name="hotel_db@localhost [2]" uuid="1df8eff9-fd99-4f7e-9038-cdcd66905fc0">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5431/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5431/hotel_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -1,0 +1,17 @@
+<div class="p-3 mx-auto relative w-fit top-32 shadow-md rounded bg-gray-50">
+  <h1>Rooms</h1>
+  <div class="grid grid-cols-3 gap-4">
+    <div *ngFor="let room of rooms" class="p-4 bg-white shadow-md rounded-lg flex flex-col items-center">
+      <div class="w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center mb-4">
+        <span class="text-white text-4xl">{{ room.number }}</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <p>Room Type: {{ room.roomType }}</p>
+        <p>Room State: {{ room.roomState }}</p>
+        <p>Residents: {{ room.residentsNumber }}</p>
+        <p>Price: {{ room.price }}</p>
+        <p>Created At: {{ room.createdAt | date:'short' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

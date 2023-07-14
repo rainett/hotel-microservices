@@ -1,0 +1,28 @@
+<div class="absolute w-full z-20 flex justify-center items-center md:justify-between space-x-2 bg-white bg-opacity-50 mb-3 py-2 px-3 shadow-md backdrop-blur-md">
+  <a href="/" class="flex items-center">
+    <img class="w-10 mx-4 my-1 md:w-16" src="assets/logo.png" alt="Logo">
+    <h1 class="mx-4 my-1 text-2xl font-cinzel md:text-3xl">
+      Hotel Name
+    </h1>
+  </a>
+
+  <button class="md:hidden" (click)="toggleMenu()">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path *ngIf="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+      <path *ngIf="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <div class="absolute flex flex-col items-center space-y-2 top-20 bg-white rounded-md shadow-md py-4 px-6
+              md:static md:top-0 md:bg-transparent md:shadow-none md:flex-row md:space-x-10 md:space-y-0" [class.hidden]="isBigScreen ? false : !isMenuOpen">
+    <a href="/about" class="text-xl text-gray-600 hover:text-gray-900">About</a>
+    <a href="/rooms" class="text-xl text-gray-600 hover:text-gray-900">Rooms</a>
+    <a href="/contact" class="text-xl text-gray-600 hover:text-gray-900">Contact</a>
+    <button *ngIf="!isLogged" (click)="login()" class="px-2 py-1 border-2 border-green-500 rounded-lg text-xl text-gray-600 hover:text-gray-100 hover:bg-green-500 transition">Log In</button>
+    <button *ngIf="isLogged" (click)="profile()" class="px-2 py-1 border-2 border-green-500 rounded-lg text-xl text-gray-600 hover:text-gray-100 hover:bg-green-500 transition">Profile</button>
+  </div>
+</div>
+

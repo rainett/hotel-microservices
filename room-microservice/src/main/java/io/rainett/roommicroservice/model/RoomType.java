@@ -1,6 +1,6 @@
 package io.rainett.roommicroservice.model;
 
-public enum RoomType {
+public enum  RoomType {
 
     SUITE, DELUXE, STANDARD
 

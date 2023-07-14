@@ -37,76 +37,76 @@ services:
     volumes:
       - "./keycloak/themes/custom:/opt/jboss/keycloak/themes/custom"
 
-#  kafka:
-#    image: bitnami/kafka
-#    container_name: kafka
-#    ports:
-#      - "9092:9092"
-#    environment:
-#      - ALLOW_PLAINTEXT_LISTENER=yes
-#
-#  # infrastructure microservices
-#  config-microservice:
-#    build: ./config-microservice
-#    container_name: config-microservice
-#    ports:
-#      - "8888:8888"
-#    healthcheck:
-#      test: [ "CMD", "wget", "http://localhost:8888" ]
-#      interval: 10s
-#      timeout: 10s
-#      retries: 5
-#
-#  discovery-microservice:
-#    build: ./discovery-microservice
-#    container_name: discovery-microservice
-#    ports:
-#      - "8761:8761"
-#
-#  gateway-microservice:
-#    build: ./gateway-microservice
-#    container_name: gateway-microservice
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - discovery-microservice
-#    environment:
-#      - EUREKA_HOST=discovery-microservice
-#
-#  # main microservices
-#  room-microservice:
-#    build: ./room-microservice
-#    container_name: room-microservice
-#    restart: on-failure
-#    ports:
-#      - "8082:8082"
-#    depends_on:
-#      - config-microservice
-#      - discovery-microservice
-#      - hotel-db
-#      - kafka
-#    environment:
-#      - CONFIG_HOST=config-microservice
-#      - EUREKA_HOST=discovery-microservice
-#      - DB_HOST=hotel-db
-#      - KAFKA_HOST=kafka
-#
-#  reservation-microservice:
-#    build: ./reservation-microservice
-#    container_name: reservation-microservice
-#    restart: on-failure
-#    ports:
-#      - "8081:8081"
-#    depends_on:
-#      - config-microservice
-#      - discovery-microservice
-#      - hotel-db
-#      - kafka
-#    environment:
-#      - CONFIG_HOST=config-microservice
-#      - EUREKA_HOST=discovery-microservice
-#      - DB_HOST=hotel-db
-#      - KAFKA_HOST=kafka
+  kafka:
+    image: bitnami/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+  # infrastructure microservices
+  config-microservice:
+    build: ./config-microservice
+    container_name: config-microservice
+    ports:
+      - "8888:8888"
+    healthcheck:
+      test: [ "CMD", "wget", "http://localhost:8888" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  discovery-microservice:
+    build: ./discovery-microservice
+    container_name: discovery-microservice
+    ports:
+      - "8761:8761"
+
+  gateway-microservice:
+    build: ./gateway-microservice
+    container_name: gateway-microservice
+    ports:
+      - "8080:8080"
+    depends_on:
+      - discovery-microservice
+    environment:
+      - EUREKA_HOST=discovery-microservice
+
+  # main microservices
+  room-microservice:
+    build: ./room-microservice
+    container_name: room-microservice
+    restart: on-failure
+    ports:
+      - "8082:8082"
+    depends_on:
+      - config-microservice
+      - discovery-microservice
+      - hotel-db
+      - kafka
+    environment:
+      - CONFIG_HOST=config-microservice
+      - EUREKA_HOST=discovery-microservice
+      - DB_HOST=hotel-db
+      - KAFKA_HOST=kafka
+
+  reservation-microservice:
+    build: ./reservation-microservice
+    container_name: reservation-microservice
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    depends_on:
+      - config-microservice
+      - discovery-microservice
+      - hotel-db
+      - kafka
+    environment:
+      - CONFIG_HOST=config-microservice
+      - EUREKA_HOST=discovery-microservice
+      - DB_HOST=hotel-db
+      - KAFKA_HOST=kafka
 
 volumes:
   pg-data:

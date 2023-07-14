@@ -1,39 +1,4 @@
-<div class="flex flex-col items-center mx-auto my-20 w-1/3 px-3 py-3 shadow-lg bg-slate-100 rounded-xl">
-    <h1 class="my-2 w-fit text-2xl">Keycloak demo app</h1>
-
-    <button class="bg-slate-50 rounded-md w-fit py-1 px-3 mt-3 mb-1 border-2 border-blue-500 transition hover:bg-blue-500 hover:text-white"
-            *ngIf="!isLogged" type="button" (click)="login()">
-        Log In
-    </button>
-
-    <div class="w-full flex flex-col items-center" *ngIf="userProfile">
-        <div class="w-full my-3 p-2 flex flex-col items-center">
-            <div class="w-full flex flex-row justify-evenly">
-                <div>Username</div>
-                <div>{{userProfile.username}}</div>
-            </div>
-            <div class="w-full flex flex-row justify-evenly">
-                <div>First Name</div>
-                <div>{{userProfile.firstName}}</div>
-            </div>
-            <div class="w-full flex flex-row justify-evenly">
-                <div>Last Name</div>
-                <div>{{userProfile.lastName}}</div>
-            </div>
-            <div class="w-full flex flex-row justify-evenly">
-                <div>Email</div>
-                <div>{{userProfile.email}}</div>
-            </div>
-            <div class="w-full flex flex-row justify-evenly">
-                <div>Created at</div>
-                <div>{{userProfile.createdTimestamp}}</div>
-            </div>
-
-        </div>
-        <button class="bg-slate-50 rounded-md w-fit py-1 px-3 mt-3 mb-1 border-2 border-red-500 transition hover:bg-red-500 hover:text-white"
-                type="button" (click)="logout()">
-            Log Out
-        </button>
-    </div>
-
+<div class="app">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
 </div>
